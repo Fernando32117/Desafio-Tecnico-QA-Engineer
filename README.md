@@ -18,7 +18,7 @@ Para executar os testes, você precisa de:
 
 1. Clone o repositório:
     ```bash
-    git clone (https://github.com/Fernando32117/Desafio-Tecnico-QA-Engineer.git)
+    git clone https://github.com/Fernando32117/Desafio-Tecnico-QA-Engineer.git
     cd Desafio-Tecnico-QA-Engineer
     ```
 
