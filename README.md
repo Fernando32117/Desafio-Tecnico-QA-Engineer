@@ -1,4 +1,4 @@
-# Cypress Testing: Autenticação e API Cart
+# Desafio Técnico - Garantindo a Qualidade no Coco Bambu
 
 Este projeto contém testes automatizados para autenticação de usuário, cadastro de endereço e interações com a API de carrinho de compras. Os testes são realizados utilizando o Cypress para garantir o funcionamento adequado da aplicação e a integridade das APIs.
 
@@ -13,6 +13,31 @@ Para executar os testes, você precisa de:
 
 - [Node.js](https://nodejs.org/) (versão 14 ou superior)
 - [Cypress](https://www.cypress.io/) para execução de testes
+
+## 1. Identificação de Fluxos Importantes
+
+Abaixo, estão três fluxos essenciais para o funcionamento da plataforma de delivery:
+
+### 1.1 Cadastro de Endereço
+**Motivo:** O usuário precisa cadastrar um endereço para prosseguir com a compra. Caso essa etapa falhe, o cliente não conseguirá finalizar o pedido.
+- **Cenários Críticos:**
+  - Usuário tenta cadastrar um endereço inválido.
+  - Falha no autocomplete do endereço.
+  - Endereço salvo não aparece na lista de endereços cadastrados.
+
+### 1.2 Adição de Itens ao Carrinho
+**Motivo:** Se o cliente não conseguir adicionar itens ao carrinho, a compra não pode ser realizada.
+- **Cenários Críticos:**
+  - Item não é adicionado ao carrinho após clicar no botão.
+  - O valor total do carrinho não é atualizado corretamente.
+  - O botão de adição de itens está desabilitado.
+
+### 1.3 Finalização do Pedido
+**Motivo:** O cliente deve conseguir revisar e confirmar o pedido sem erros.
+- **Cenários Críticos:**
+  - O pedido é finalizado, mas não é registrado no sistema.
+  - Erro ao selecionar forma de pagamento.
+  - O resumo do pedido exibe valores incorretos.
 
 ## Instalação do Cypress
 
@@ -38,11 +63,17 @@ Para executar os testes, você precisa de:
 
 O arquivo `autenticacao_e_cadastro_endereco.cy.js` contém os testes para realizar o login e o cadastro de um novo endereço.
 
-**Fluxo do Teste:**
+**Fluxo do Teste 1:**
 1. O teste visita a página inicial e clica na opção de login.
 2. O usuário preenche as credenciais de login e o código OTP (fixo).
 3. O teste navega até o menu de endereços e cadastra um novo endereço, preenchendo os campos necessários como rua e número.
 4. O endereço é marcado como "padrão" e salvo.
+
+**Fluxo do Teste 2:**
+1. O teste visita a página inicial e clica na opção de login.
+2. O usuário preenche as credenciais de login e o código OTP (fixo).
+3. O teste navega até o menu de endereços e cadastra um novo endereço, preenchendo o campo rua.
+4. O endereço é salvo como endereço sem número S/N.
 
 ### Testes de API do Carrinho
 
