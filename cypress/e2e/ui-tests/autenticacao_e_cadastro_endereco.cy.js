@@ -16,7 +16,8 @@ describe('Autenticação e Cadastro de Endereço', () => {
         streetField: '#rua',
         numberField: '#numero',
         defaultAddressToggle: '.default-div',
-        saveButton: '.is-primary'
+        saveButton: '.is-primary',
+        noNumberOption: '.confirm'
     };
 
     beforeEach(() => {
@@ -62,6 +63,29 @@ describe('Autenticação e Cadastro de Endereço', () => {
         // Marcar como endereço padrão e salvar
         cy.get(selectors.defaultAddressToggle).click();
         cy.get(selectors.saveButton).click();
+    });
+
+    it('Deve permitir ao usuário cadastrar um Endereço sem número', () => {
+        // Abrir menu de endereços
+        cy.get(selectors.addressMenu, { timeout: 5000 }).should('be.visible').first().click();
+        cy.get(selectors.addressList).should('exist');
+
+        // Cadastrar novo endereço
+        cy.get(selectors.addAddressButton).should('exist').click();
+        cy.get(selectors.addressForm).should('exist');
+
+        // Inserir nome do endereço
+        cy.get('#autocomplete', { timeout: 5000 }).type('brasilia');
+        cy.get('.pac-container > :nth-child(1)', { timeout: 5000 }).click();
+
+        // Preencher endereço
+        cy.get(selectors.streetField).should('be.visible').type('Qd 58 Rua Testando Endereço', { timeout: 5000 });
+
+        // Clicar em Salvar
+        cy.get(selectors.saveButton).click();
+
+        // Verificar se a opção "Endereço sem número" aparece
+        cy.get(selectors.noNumberOption).should('be.visible').click();
     });
 
 });
