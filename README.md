@@ -80,14 +80,16 @@ O arquivo `autenticacao_e_cadastro_endereco.cy.js` contém os testes para realiz
 O arquivo `cart_api.cy.js` contém testes para interagir com a API de carrinho de compras utilizando o método `cy.request`.
 
 **Fluxo do Teste:**
-1. **Adicionar um item ao carrinho:**
-    - Um item é adicionado ao carrinho utilizando o método `POST` na API de carrinho, e o teste verifica se a resposta tem status `201` e o item é adicionado corretamente.
-
-2. **Atualizar a quantidade de um item:**
-    - O teste utiliza o método `PUT` para atualizar a quantidade de um item no carrinho e verifica se a resposta retorna o status `200` e a quantidade foi atualizada corretamente.
-
-3. **Remover um item do carrinho:**
-    - O teste utiliza o método `DELETE` para remover um item do carrinho e verifica se a resposta retorna o status `200` e o item foi removido corretamente.
+1. **Adicionar um item ao carrinho.**
+2. **Atualizar a quantidade de um item.**
+3. **Remover um item do carrinho.**
+4. **Verificar se o carrinho está vazio ao ser criado.**
+5. **Validar se o carrinho não pode ser atualizado com quantidade negativa.**
+6. **Verificar o comportamento ao adicionar um item inexistente.**
+7. **Manter consistência após adição e remoção de itens.**
+8. **Carrinhos de usuários diferentes não devem se misturar.**
+9. **Remover um item sem afetar os outros.**
+10. **Não deve permitir adicionar mais produtos do que o estoque disponível.**
 
 ## Como Executar os Testes
 
