@@ -118,8 +118,8 @@ describe("API Cart Tests", () => {
           method: "GET",
           url: `${baseUrl}/1`,
         }).then((response) => {
-            // ✅ Transição de Estado: Testa a remoção e verifica se o carrinho fica vazio
-            expect(response.body.products).to.have.lengthOf(4); // Carrinho deve estar vazio
+          // ✅ Transição de Estado: Testa a remoção e verifica se o carrinho fica vazio
+          expect(response.body.products).to.have.lengthOf(4); // Carrinho deve estar vazio
         });
       });
     });
@@ -208,6 +208,34 @@ describe("API Cart Tests", () => {
       // ✅ Valor Limite: Testamos uma quantidade além do permitido.
       expect(response.status).to.eq(201); // Espera um erro de validação
       expect(response.body.message).to.eq(undefined);
+    });
+  });
+
+  // 🛒 1️⃣1️⃣ Obter todos os carrinhos
+  it("Deve obter todos os carrinhos", () => {
+    cy.request("GET", baseUrl).then((response) => {
+      // ✅ Teste de Unidade: Verificamos se todos os carrinhos são obtidos corretamente
+      expect(response.status).to.eq(200); // Valida se a requisição foi bem-sucedida
+      expect(response.body.carts).to.be.an("array"); // Verifica se a resposta é um array
+    });
+  });
+
+  // 🛒 1️⃣2️⃣ Obter um único carrinho
+  it("Deve obter um único carrinho", () => {
+    cy.request("GET", `${baseUrl}/1`).then((response) => {
+      // ✅ Teste de Unidade: Verificamos se um único carrinho é obtido corretamente
+      expect(response.status).to.eq(200); // Valida se a requisição foi bem-sucedida
+      expect(response.body.id).to.eq(1); // Verifica se o ID do carrinho está correto
+      expect(response.body.products).to.be.an("array"); // Verifica se os produtos são um array
+    });
+  });
+
+  // 🛒 1️⃣3️⃣ Obter carrinhos de um usuário específico
+  it("Deve obter carrinhos de um usuário específico", () => {
+    cy.request("GET", `${baseUrl}/user/5`).then((response) => {
+      // ✅ Teste de Unidade: Verificamos se os carrinhos de um usuário específico são obtidos corretamente
+      expect(response.status).to.eq(200); // Valida se a requisição foi bem-sucedida
+      expect(response.body.carts).to.be.an("array"); // Verifica se a resposta é um array
     });
   });
 });

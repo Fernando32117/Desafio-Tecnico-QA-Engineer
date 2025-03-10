@@ -90,6 +90,9 @@ O arquivo `cart_api.cy.js` contém testes para interagir com a API de carrinho d
 8. **Carrinhos de usuários diferentes não devem se misturar.**
 9. **Remover um item sem afetar os outros.**
 10. **Não deve permitir adicionar mais produtos do que o estoque disponível.**
+11. **Obter todos os carrinhos.**
+12. **Obter um único carrinho.**
+13. **Obter carrinhos de um usuário específico.**
 
 ## Como Executar os Testes
 

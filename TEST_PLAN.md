@@ -18,6 +18,9 @@ Os testes cobrem as seguintes funcionalidades da API:
 - Carrinhos de usuários diferentes não devem se misturar
 - Remover um item sem afetar os outros itens do carrinho
 - Não deve permitir adicionar mais produtos do que o estoque disponível
+- Obter todos os carrinhos
+- Obter um único carrinho
+- Obter carrinhos de um usuário específico
 
 ## Ferramentas Utilizadas
 
@@ -172,6 +175,51 @@ Essa técnica assegura que operações em um item específico não afetam outros
 
 **Técnica utilizada:** **Teste de Valor Limite**\
 Essa técnica valida que a API trata corretamente situações onde a quantidade solicitada excede o estoque disponível.
+
+---
+
+### 11. Obter todos os carrinhos
+
+**Objetivo:** Verificar se todos os carrinhos podem ser obtidos corretamente.
+
+**Passos:**
+
+1. Enviar uma requisição `GET` para `/carts`.
+2. Confirmar que o status de resposta é `200 OK`.
+3. Verificar que a resposta contém um array de carrinhos.
+
+**Técnica utilizada:** **Teste de Unidade**\
+Essa técnica garante que todos os carrinhos sejam retornados corretamente pela API.
+
+---
+
+### 12. Obter um único carrinho
+
+**Objetivo:** Validar se a API permite obter um único carrinho corretamente.
+
+**Passos:**
+
+1. Enviar uma requisição GET para `/carts/{id}`.
+2. Confirmar que o status de resposta é `200 OK`.
+3. Verificar que o ID do carrinho e seus produtos estão corretos na resposta.
+
+**Técnica utilizada:** **Teste de Unidade**\
+Essa técnica assegura que um único carrinho é retornado com os dados corretos.
+
+---
+
+### 13. Obter carrinhos de um usuário específico
+
+**Objetivo:** Garantir que a API retorne os carrinhos de um usuário específico corretamente.
+
+**Passos:**
+
+1. Enviar uma requisição GET para `/carts/user/{userId}`.
+2. Confirmar que o status de resposta é `200 OK`.
+3. Verificar que a resposta contém um array de carrinhos para o usuário especificado.
+
+**Técnica utilizada:** **Teste de Unidade**\
+Essa técnica valida que os carrinhos de um usuário específico são retornados corretamente pela API.
 
 ---
 
